@@ -2,8 +2,14 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-   ALTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE 'secondary' BEFORE 'outline';
-  ALTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE 'primary' BEFORE 'outline';
+  LTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
+ALTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'primary' BEFORE 'outline';
+ALTER TYPE "public"."enum_pages_blocks_content_columns_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
+ALTER TYPE "public"."enum_pages_blocks_content_columns_link_appearance" ADD VALUE IF NOT EXISTS 'primary' BEFORE 'outline';
+ALTER TYPE "public"."enum__pages_v_version_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
+ALTER TYPE "public"."enum__pages_v_version_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'primary' BEFORE 'outline';
+ALTER TYPE "public"."enum__pages_v_blocks_content_columns_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
+ALTER TYPE "public"."enum__pages_v_blocks_content_columns_link_appearance" ADD VALUE IF NOT EXISTS 'primary' BEFORE 'outline';
   ALTER TYPE "public"."enum_pages_blocks_content_columns_link_appearance" ADD VALUE 'secondary' BEFORE 'outline';
   ALTER TYPE "public"."enum_pages_blocks_content_columns_link_appearance" ADD VALUE 'primary' BEFORE 'outline';
   ALTER TYPE "public"."enum__pages_v_version_hero_links_link_appearance" ADD VALUE 'secondary' BEFORE 'outline';
