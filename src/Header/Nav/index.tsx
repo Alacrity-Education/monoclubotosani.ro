@@ -19,7 +19,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
           return (
             <div key={i} className="hidden lg:block">
               <details className="dropdown dropdown-end">
-                <summary className="btn btn-ghost bg-neutral/20 text-white text-lg">
+                <summary className="btn btn-ghost bg-neutral/20 text-white text-sm">
                   {link?.label || "Menu"}
                 </summary>
                 <ul className="menu dropdown-content rounded-box bg-base-100 z-10 mt-3 w-52 p-1 shadow-sm">
