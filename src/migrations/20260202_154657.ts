@@ -2,7 +2,7 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-  LTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
+  ALTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
 ALTER TYPE "public"."enum_pages_hero_links_link_appearance" ADD VALUE IF NOT EXISTS 'primary' BEFORE 'outline';
 ALTER TYPE "public"."enum_pages_blocks_content_columns_link_appearance" ADD VALUE IF NOT EXISTS 'secondary' BEFORE 'outline';
 ALTER TYPE "public"."enum_pages_blocks_content_columns_link_appearance" ADD VALUE IF NOT EXISTS 'primary' BEFORE 'outline';
