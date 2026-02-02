@@ -135,7 +135,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   }
 
   if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.secondary]
+    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.secondary, appearanceOptions.primary, appearanceOptions.outline]
 
     if (appearances) {
       appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
