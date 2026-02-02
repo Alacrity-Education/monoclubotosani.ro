@@ -40,6 +40,17 @@ export const CardBlock: Block = {
           }),
         },
         {
+          name:"size",
+          type:"select",
+          required: true,
+          defaultValue: "spanable",
+          options:[
+            { label: "Spanable (grid-like)", value: "spanable" },
+            { label: "Vertical", value: "vertical" },
+            { label: "Horizontal", value: "horizontal" },
+          ]
+        },
+        {
           name: "variant",
           type: "select",
           required: true,
@@ -56,7 +67,7 @@ export const CardBlock: Block = {
           type: "number",
           label: "Column Span (md+)",
           defaultValue: 1,
-          admin: { step: 1, description: "1 or 2 columns (on md and larger)" },
+          admin: { step: 1, description: "1 or 2 columns (on md and larger)",  condition: (_, sibling) => sibling?.size === "spanable", },
           min: 1,
           max: 2,
         },
@@ -65,7 +76,7 @@ export const CardBlock: Block = {
           type: "number",
           label: "Row Span (md)",
           defaultValue: 1,
-          admin: { step: 1, description: "1 or 2 rows (on lg screens)" },
+          admin: { step: 1, description: "1 or 2 rows (on lg screens)", condition: (_, sibling) => sibling?.size === "spanable",  },
           min: 1,
           max: 2,
         },

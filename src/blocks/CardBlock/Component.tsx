@@ -52,13 +52,15 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
           const variant: Variant = rawVariant ?? "primary";
           const isWhite = variant === "white";
           // row and col span support (clamped to 1-2)
-          const rowSpan = Math.min(Math.max((card as any)?.rowSpan ?? 1, 1), 2);
-          const colSpan = Math.min(Math.max((card as any)?.colSpan ?? 1, 1), 2);
-          const spanClasses = cn(
+          const rowSpan = Math.min(Math.max((card)?.rowSpan ?? 1, 1), 2);
+          const colSpan = Math.min(Math.max((card)?.colSpan ?? 1, 1), 2);
+          const sizeClasses = card.size === 'spanable'? cn(
             // apply spans from md and up
             rowSpan === 2 ? "md:row-span-2" : "md:row-span-1",
             colSpan === 2 ? "md:col-span-2 lg:col-span-2" : "md:col-span-1 lg:col-span-1",
-          );
+          ) : card.size === "vertical" ? cn("h-82","w-58") : cn("h-58","w-82");
+
+
 
           const cardRecord = card as Record<string, unknown>;
           const href = typeof cardRecord.link === "string" ? (cardRecord.link as string) : undefined;
@@ -135,11 +137,11 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
 
 
           return link && card.withLink ? (
-            <CMSLink {...link} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
+            <CMSLink {...link} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", sizeClasses)}>
               {cardInner}
             </CMSLink>
           ) : (
-            <div className={cn(spanClasses," h-full w-full")} key={i}>{cardInner}</div>
+            <div className={cn(" h-full w-full",sizeClasses)} key={i}>{cardInner}</div>
           );
         })}
       </div>

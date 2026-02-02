@@ -833,6 +833,7 @@ export interface CardBlock {
           };
           [k: string]: unknown;
         } | null;
+        size: 'spanable' | 'vertical' | 'horizontal';
         variant: 'primary' | 'secondary' | 'starry' | 'white';
         /**
          * 1 or 2 columns (on md and larger)
@@ -1429,6 +1430,7 @@ export interface CardBlockSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        size?: T;
         variant?: T;
         colSpan?: T;
         rowSpan?: T;
@@ -2185,17 +2187,6 @@ export interface BannerBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'banner';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CodeBlock".
- */
-export interface CodeBlock {
-  language?: ('typescript' | 'javascript' | 'css') | null;
-  code: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'code';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
