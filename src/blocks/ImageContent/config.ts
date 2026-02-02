@@ -5,6 +5,8 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from "@payloadcms/richtext-lexical";
+import { link } from "@/fields/link";
+import { linkGroup } from "@/fields/linkGroup";
 
 export const ImageContentBlock: Block = {
   slug: "imageContent",
@@ -87,23 +89,14 @@ export const ImageContentBlock: Block = {
             },
           }),
         },
-        // CTA fields only for text cells
-        {
-          name: "ctaText",
-          type: "text",
-          label: "CTA Button Text",
-          admin: {
-            condition: (data, siblingData) => siblingData?.type === "text",
-          },
-        },
-        {
-          name: "ctaHref",
-          type: "text",
-          label: "CTA Button Link",
-          admin: {
-            condition: (data, siblingData) => siblingData?.type === "text",
-          },
-        },
+            linkGroup({
+              appearances: ["default", "secondary"],
+              overrides: {
+                name:"links",
+                maxRows: 2,
+                
+              },
+            }),
         {
           name: "media",
           type: "upload",

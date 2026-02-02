@@ -81,7 +81,7 @@ export const CallToAction: Block = {
       },
     },
     linkGroup({
-      appearances: ["default", "outline"],
+      appearances: ["primary", "outline","default"],
       overrides: {
         maxRows: 2,
         admin: {

@@ -20,6 +20,14 @@ type CMSLinkType = {
   url?: string | null;
 };
 
+const linkAppearance = {
+  "primary" : "btn btn-primary",
+  "secondary" : "btn btn-secondary",
+  "accent": "btn btn-accent",
+  "neutral": "btn btn-neutral",
+  "transparent": "btn btn-ghost"
+}
+
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
   const {
     type,

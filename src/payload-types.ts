@@ -194,7 +194,7 @@ export interface Page {
             /**
              * Choose how the link should be rendered.
              */
-            appearance?: ('default' | 'outline') | null;
+            appearance?: ('default' | 'secondary') | null;
           };
           id?: string | null;
         }[]
@@ -496,7 +496,7 @@ export interface CallToActionBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('primary' | 'outline' | 'default') | null;
         };
         id?: string | null;
       }[]
@@ -721,7 +721,7 @@ export interface ContentBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'secondary') | null;
         };
         id?: string | null;
       }[]
@@ -930,8 +930,30 @@ export interface ImageContentBlock {
           };
           [k: string]: unknown;
         } | null;
-        ctaText?: string | null;
-        ctaHref?: string | null;
+        links?:
+          | {
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label?: string | null;
+                /**
+                 * Choose how the link should be rendered.
+                 */
+                appearance?: ('default' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         media?: (number | null) | Media;
         id?: string | null;
       }[]
@@ -1460,8 +1482,21 @@ export interface ImageContentBlockSelect<T extends boolean = true> {
         type?: T;
         rowSpan?: T;
         richText?: T;
-        ctaText?: T;
-        ctaHref?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
         media?: T;
         id?: T;
       };
