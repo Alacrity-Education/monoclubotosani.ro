@@ -25,7 +25,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 <ul className="menu dropdown-content rounded-box bg-base-100 z-10 mt-3 w-52 p-1 shadow-sm">
                   {(subItems || []).map((sub: any, idx: number) => (
                     <li key={idx}>
-                      <CMSLink {...sub.link} appearance="inline" className={"invert text-xs"} />
+                      <CMSLink {...sub.link} appearance="inline" className={"invert text-sm"} />
                     </li>
                   ))}
                 </ul>

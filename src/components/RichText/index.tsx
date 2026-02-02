@@ -13,7 +13,7 @@ import {
   RichText as ConvertRichText,
 } from "@payloadcms/richtext-lexical/react";
 
-import { CodeBlock, CodeBlockProps } from "@/blocks/Code/Component";
+
 
 import type {
   BannerBlock as BannerBlockProps,
@@ -28,7 +28,7 @@ import {StaticMapBlock} from "@/blocks/StaticMap/Component";
 type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | StaticMapBlockProps
+      CTABlockProps | MediaBlockProps | BannerBlockProps  | StaticMapBlockProps
     >;
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
@@ -59,7 +59,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
         disableInnerContainer={true}
       />
     ),
-    code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
+
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
     staticMap: ({ node }) => <StaticMapBlock {...node.fields} />,
   },
