@@ -27,7 +27,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         {
           link: {
             type: 'custom',
-            appearance: 'outline',
+            appearance: 'secondary',
             label: 'Contact',
             url: '/contact',
           },
