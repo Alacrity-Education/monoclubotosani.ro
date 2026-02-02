@@ -58,7 +58,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
             // apply spans from md and up
             rowSpan === 2 ? "md:row-span-2" : "md:row-span-1",
             colSpan === 2 ? "md:col-span-2 lg:col-span-2" : "md:col-span-1 lg:col-span-1",
-          ) : card.size === "vertical" ? cn("h-82","w-58") : cn("h-58","w-82");
+          ) : card.size === "vertical" ? cn("aspect-2/3","w-full") : cn("h-58","aspect-3/2");
 
 
 
