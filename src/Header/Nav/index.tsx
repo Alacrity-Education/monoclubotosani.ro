@@ -17,9 +17,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         const { itemType, link, subItems } = item as any;
         if (itemType === "parent") {
           return (
-            <div key={i} className="hidden md:block">
-              <details className="dropdown   dropdown-end">
-                <summary className="btn btn-sm btn-ghost bg-base-100/20 text-white">
+            <div key={i} className="hidden lg:block">
+              <details className="dropdown dropdown-end">
+                <summary className="btn btn-ghost bg-neutral/20 text-white text-lg">
                   {link?.label || "Menu"}
                 </summary>
                 <ul className="menu dropdown-content rounded-box bg-base-100 z-10 mt-3 w-52 p-1 shadow-sm">
@@ -38,14 +38,14 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             key={i}
             {...link}
             appearance="link"
-            className="btn btn-sm btn-ghost bg-base-100/20 text-white hidden md:inline-flex "
+            className="btn btn-ghost bg-neutral/20 text-white hidden lg:inline-flex text-sm "
           />
         );
       })}
 
       {/* Mobile menu */}
-      <details className="dropdown dropdown-end  md:hidden">
-        <summary className="btn btn-ghost btn-xs m-1">
+      <details className="dropdown dropdown-end lg:hidden">
+        <summary className="btn btn-ghost  m-1">
           <MenuIcon className="h-full" />
         </summary>
         <ul className="menu dropdown-content rounded-box bg-base-100 z-1 mt-3 w-52 p-1 shadow-sm ">
@@ -59,7 +59,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     <ul className="bg-base-100 rounded-t-none p-2">
                       {(subItems || []).map((sub: any, idx: number) => (
                         <li key={idx}>
-                          <CMSLink {...sub.link} appearance="inline" className={"invert text-xs"} />
+                          <CMSLink {...sub.link} appearance="inline" className={"invert text-sm"} />
                         </li>
                       ))}
                     </ul>
@@ -69,7 +69,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             }
             return (
               <li key={i}>
-                <CMSLink {...link} appearance={"inline"} className={"invert text-xs"} />
+                <CMSLink {...link} appearance={"inline"} className={"invert text-sm"} />
               </li>
             );
           })}
