@@ -1,5 +1,5 @@
 {
-  "id": "eea9f84c-1e4d-4c10-8d00-9ad3446a6d10",
+  "id": "48621873-9ab0-4167-ab91-c40f8d34c1e8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -59,7 +59,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         }
       },
       "indexes": {
@@ -170,7 +170,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         }
       },
       "indexes": {
@@ -505,7 +505,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         }
       },
       "indexes": {
@@ -1736,7 +1736,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         }
       },
       "indexes": {
@@ -2770,7 +2770,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         },
         "_uuid": {
           "name": "_uuid",
@@ -2887,7 +2887,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         },
         "_uuid": {
           "name": "_uuid",
@@ -3234,7 +3234,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         },
         "_uuid": {
           "name": "_uuid",
@@ -4519,7 +4519,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'primary'"
+          "default": "'default'"
         },
         "_uuid": {
           "name": "_uuid",
@@ -12384,8 +12384,9 @@
       "name": "enum_pages_blocks_cta_links_link_appearance",
       "schema": "public",
       "values": [
-        "default",
-        "outline"
+        "primary",
+        "outline",
+        "default"
       ]
     },
     "public.enum_pages_blocks_cta_variant": {
@@ -12602,8 +12603,9 @@
       "name": "enum__pages_v_blocks_cta_links_link_appearance",
       "schema": "public",
       "values": [
-        "default",
-        "outline"
+        "primary",
+        "outline",
+        "default"
       ]
     },
     "public.enum__pages_v_blocks_cta_variant": {
