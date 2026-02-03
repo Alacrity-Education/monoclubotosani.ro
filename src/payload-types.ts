@@ -155,7 +155,7 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  title: string;
+  title?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'homeHero' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -201,17 +201,19 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (
-    | CallToActionBlock
-    | ContentBlock
-    | MediaBlock
-    | ArchiveBlock
-    | FormBlock
-    | CardBlock
-    | LogoCarouselBlock
-    | ImageContentBlock
-    | StaticMapBlock
-  )[];
+  layout?:
+    | (
+        | CallToActionBlock
+        | ContentBlock
+        | MediaBlock
+        | ArchiveBlock
+        | FormBlock
+        | CardBlock
+        | LogoCarouselBlock
+        | ImageContentBlock
+        | StaticMapBlock
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     /**
