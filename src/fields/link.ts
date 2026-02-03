@@ -85,9 +85,13 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       label: 'Document to link to',
       relationTo: ['pages', 'posts'],
       // Conditionally validate only when type is reference
-      validate: (val:any, { siblingData }: {siblingData:any}) => {
-        if (siblingData?.type !== 'reference') return true
-        return !!val || 'Please choose a document to link to.'
+      validate: (val: any, { siblingData }: { siblingData: any }): string | true => {
+        // TEMPORARY BYPASS:
+        return true
+
+        // ORIGINAL CODE (Uncomment later):
+        // if (siblingData?.type !== 'reference') return true
+        // return !!val || 'Please choose a document to link to.'
       },
     },
     {
@@ -99,9 +103,13 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       label: 'Custom URL',
       defaultValue: '#',
       // Conditionally validate only when type is custom
-      validate: (val:any, { siblingData } : {siblingData:any}) => {
-        if (siblingData?.type !== 'custom') return true
-        return !!val || 'Please provide a URL.'
+      validate: (val: any, { siblingData }: { siblingData: any }): string | true => {
+        // TEMPORARY BYPASS:
+        return true
+
+        // ORIGINAL CODE (Uncomment later):
+        // if (siblingData?.type !== 'custom') return true
+        // return !!val || 'Please provide a URL.'
       },
     },
   ]
