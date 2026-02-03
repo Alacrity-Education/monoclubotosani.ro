@@ -89,7 +89,7 @@ export const hero: Field = {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact', 'homeHero'].includes(type),
       },
       relationTo: 'media',
-      required: true,
+      required: false,
     },
   ],
   label: false,
