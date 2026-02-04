@@ -151,8 +151,8 @@ export const CardsArchiveBlock: React.FC<
                     )}
 
                     {post.eventDate && (
-                      <div className="not-prose w-full text-start text-sm sm:text-lg mb-2">
-                        Data: {new Date(post.eventDate).toLocaleDateString()}
+                      <div className="not-prose w-full text-start text-sm mb-4">
+                        {new Date(post.eventDate).toLocaleDateString()}
                       </div>
                     )}
 
