@@ -81,13 +81,14 @@ export const LongCard: React.FC<{
                 <h3>
                 {titleToUse}
                 </h3>
+                {subtitle && (
+                  <div className="w-full text-start text-base sm:text-xl no-underline">
+                    <h3>{subtitle}</h3>
+                  </div>
+                )}
               </Link>
         )}
-        {subtitle && (
-          <div className="w-full text-start text-base sm:text-xl no-underline">
-            <h3>{subtitle}</h3>
-          </div>
-        )}
+
         {eventDate && <div className="not-prose w-40 lg:w-full text-start text-sm sm:text-sm  mb-4 lg:mb-2 lg:text-lg">
 
           Data: {new Date(eventDate).toLocaleDateString()}
