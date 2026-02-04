@@ -10,8 +10,8 @@ import { Media } from "@/components/Media";
 
 export const CardsArchiveBlock: React.FC<
   ArchiveBlockProps & {
-    id?: string | null;
-  }
+  id?: string | null;
+}
 > = async (props) => {
   const {
     id,
@@ -48,12 +48,12 @@ export const CardsArchiveBlock: React.FC<
       limit,
       ...(flattenedCategories && flattenedCategories.length > 0
         ? {
-            where: {
-              categories: {
-                in: flattenedCategories,
-              },
+          where: {
+            categories: {
+              in: flattenedCategories,
             },
-          }
+          },
+        }
         : {}),
     });
 
@@ -66,14 +66,16 @@ export const CardsArchiveBlock: React.FC<
     }
   }
 
-  const getVariantClasses = (variant: "primary" | "secondary" | "starry" | "transparent") =>
+  const getVariantClasses = (
+    variant: "primary" | "secondary" | "starry" | "transparent"
+  ) =>
     variant === "primary"
       ? "bg-primary text-primary-content"
       : variant === "secondary"
-      ? "bg-secondary text-secondary-content"
-      : variant === "transparent"
-      ? "bg-base-100 text-base-content border border-neutral/20"
-      : "bg-gradient-to-tr from-primary to-black stars [--star-scale:200px] text-primary-content";
+        ? "bg-secondary text-secondary-content"
+        : variant === "transparent"
+          ? "bg-base-100 text-base-content border border-neutral/20"
+          : "bg-gradient-to-tr from-primary to-black stars [--star-scale:200px] text-primary-content";
 
   return (
     <div className="container mx-auto my-8" id={`block-${id}`}>
@@ -90,7 +92,7 @@ export const CardsArchiveBlock: React.FC<
         <div
           className={cn(
             "grid grid-cols-1 gap-4",
-            "sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
+            "sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
           )}
         >
           {posts?.map((post, index) => {
@@ -104,44 +106,60 @@ export const CardsArchiveBlock: React.FC<
             const sanitizedDescription = description?.replace(/\s/g, " ");
 
             return (
-              <Link className={"h-full w-full min-w-max max-w-full hover:-translate-y-1 transition-all shadow-lg"} key={href} href={href}>
-              <article
-                key={index}
-                className={cn(
-                  variantClasses,
-                  "shadow-lg rounded-lg p-4 flex h-52 w-full min-w-max flex-row-reverse hover:cursor-pointer"
-                )}
+              <Link
+                className={
+                  "h-full w-full min-w-max max-w-full hover:-translate-y-1 transition-all"
+                }
+                key={href}
+                href={href}
               >
-                <div className="relative h-full w-32 ">
-                  {!metaImage && <div className="bg-base-200 rounded-lg h-full w-full" />}
-                  {metaImage && typeof metaImage === "object" && (
-                    <Media
-                      resource={metaImage}
-                      imgClassName="h-full w-full object-cover rounded-lg overflow-clip object-center shadow-xl absolute inset-0"
-                      pictureClassName="h-full w-full rounded-lg overflow-clip object-center bg-base-200 shadow-lg"
-                      fill
-                    />
+                <article
+                  key={index}
+                  className={cn(
+                    variantClasses,
+                    // Extracted Styles from LongCard (Mobile View)
+                    "shadow-lg rounded-lg p-4 flex h-max w-full flex-row-reverse hover:cursor-pointer"
                   )}
-                </div>
-                <div className="max-w-full min-w-40 h-full text-base grow flex flex-col justify-between">
-                  {title && (
-                    <div
-                      className="w-40 text-start text-base sm:text-xl font-bold no-underline"
+                >
+                  {/* Image Section - Sized to match LongCard mobile */}
+                  <div className="relative h-46 sm:h-60 aspect-2/3">
+                    {!metaImage && (
+                      <div className="bg-base-200 rounded-lg h-full w-full flex items-center justify-center text-xs">
+                        No Image
+                      </div>
+                    )}
+                    {metaImage && typeof metaImage === "object" && (
+                      <Media
+                        resource={metaImage}
+                        // Media classes from LongCard
+                        imgClassName="h-full w-full object-cover rounded-lg overflow-clip object-center shadow-xl absolute inset-0"
+                        pictureClassName="h-full w-full rounded-lg overflow-clip object-center bg-base-200 shadow-lg"
+                        fill
+                      />
+                    )}
+                  </div>
 
-                    >
-                      <h3>{title}</h3>
-                    </div>
-                  )}
+                  {/* Text Section - Structure from LongCard */}
+                  <div className="lg:pr-0 max-w-full w-full h-full md:grow text-base flex flex-col">
+                    {title && (
+                      <div className="w-full text-start text-base sm:text-xl font-bold no-underline">
+                        <h3>{title}</h3>
+                      </div>
+                    )}
 
-                  {post.eventDate && (
-                    <div className="not-prose w-40 text-start text-sm sm:text-lg mb-2">
-                      Data: {new Date(post.eventDate).toLocaleDateString()}
+                    {post.eventDate && (
+                      <div className="not-prose w-full text-start text-sm sm:text-lg mb-2">
+                        Data: {new Date(post.eventDate).toLocaleDateString()}
+                      </div>
+                    )}
 
-                    </div>
-                  )}
-
-                </div>
-              </article>
+                    {description && (
+                      <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 text-xs sm:text-sm w-full text-start">
+                        <p>{sanitizedDescription}</p>
+                      </div>
+                    )}
+                  </div>
+                </article>
               </Link>
             );
           })}
