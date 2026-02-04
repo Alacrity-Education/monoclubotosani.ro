@@ -15,7 +15,7 @@ export const LongCard: React.FC<{
   className?: string;
   doc?: CardPostData;
   relationTo?: "posts";
-
+  subtitle?: string;
   showCategories?: boolean;
   title?: string;
   variant?: "primary" | "secondary" | "starry" | "transparent";
@@ -26,6 +26,7 @@ export const LongCard: React.FC<{
     doc,
     relationTo,
     title: titleFromProps,
+    subtitle,
     variant = "primary",
   } = props;
 
@@ -82,12 +83,17 @@ export const LongCard: React.FC<{
                 </h3>
               </Link>
         )}
+        {subtitle && (
+          <div className="w-full text-start text-base sm:text-xl no-underline">
+            <h3>{subtitle}</h3>
+          </div>
+        )}
         {eventDate && <div className="not-prose w-40 lg:w-full text-start text-sm sm:text-lg  mb-2 lg:mb-2 lg:text-lg">
 
           Data: {new Date(eventDate).toLocaleDateString()}
         </div>}
         {description && (
-          <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 lg:line-clamp-3 text-xs sm:text-sm lg:text-sm w-40 lg:w-full text-start">
+          <div className="line-clamp-7 font-light sm:line-clamp-2 md:line-clamp-4 lg:line-clamp-2 text-xs sm:text-sm lg:text-sm w-40 lg:w-full text-start">
             {description && <p>{sanitizedDescription}</p>}
           </div>
         )}
@@ -95,3 +101,4 @@ export const LongCard: React.FC<{
     </article>
   );
 };
+

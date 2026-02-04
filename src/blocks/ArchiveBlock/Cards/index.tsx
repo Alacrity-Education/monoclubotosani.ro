@@ -1,5 +1,4 @@
 import type { Post, ArchiveBlock as ArchiveBlockProps } from "@/payload-types";
-
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 import React from "react";
@@ -103,12 +102,14 @@ export const CardsArchiveBlock: React.FC<
             const metaImage = post.meta?.image;
             const description = post.meta?.description;
             const title = post.title;
+            const subtitle = post.subtitle;
             const sanitizedDescription = description?.replace(/\s/g, " ");
 
             return (
               <Link
+                // 1. REMOVED `min-w-max` here. Added `min-w-0` to be safe.
                 className={
-                  "h-full w-full min-w-max max-w-full hover:-translate-y-1 transition-all"
+                  "h-full w-full min-w-0 max-w-full hover:-translate-y-1 transition-all"
                 }
                 key={href}
                 href={href}
@@ -117,12 +118,10 @@ export const CardsArchiveBlock: React.FC<
                   key={index}
                   className={cn(
                     variantClasses,
-                    // Extracted Styles from LongCard (Mobile View)
                     "shadow-lg rounded-lg p-4 flex h-max w-full flex-row-reverse hover:cursor-pointer"
                   )}
                 >
-                  {/* Image Section - Sized to match LongCard mobile */}
-                  <div className="relative h-46 sm:h-60 aspect-2/3">
+                  <div className="relative h-46 sm:h-60 aspect-2/3 shrink-0">
                     {!metaImage && (
                       <div className="bg-base-200 rounded-lg h-full w-full flex items-center justify-center text-xs">
                         No Image
@@ -131,7 +130,6 @@ export const CardsArchiveBlock: React.FC<
                     {metaImage && typeof metaImage === "object" && (
                       <Media
                         resource={metaImage}
-                        // Media classes from LongCard
                         imgClassName="h-full w-full object-cover rounded-lg overflow-clip object-center shadow-xl absolute inset-0"
                         pictureClassName="h-full w-full rounded-lg overflow-clip object-center bg-base-200 shadow-lg"
                         fill
@@ -139,11 +137,16 @@ export const CardsArchiveBlock: React.FC<
                     )}
                   </div>
 
-                  {/* Text Section - Structure from LongCard */}
-                  <div className="lg:pr-0 max-w-full w-full h-full md:grow text-base flex flex-col">
+
+                  <div className="min-w-0 flex-1 lg:pr-0 h-full text-base flex flex-col pr-4">
                     {title && (
-                      <div className="w-full text-start text-base sm:text-xl font-bold no-underline">
+                      <div className="w-full text-start text-base sm:text-xl font-bold no-underline ">
                         <h3>{title}</h3>
+                      </div>
+                    )}
+                    {subtitle && (
+                      <div className="w-full text-start text-base sm:text-xl no-underline ">
+                        <h3>{subtitle}</h3>
                       </div>
                     )}
 
@@ -154,7 +157,7 @@ export const CardsArchiveBlock: React.FC<
                     )}
 
                     {description && (
-                      <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 text-xs sm:text-sm w-full text-start">
+                      <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 text-xs sm:text-sm w-full text-start break-words">
                         <p>{sanitizedDescription}</p>
                       </div>
                     )}
