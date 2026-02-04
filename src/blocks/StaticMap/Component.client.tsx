@@ -26,9 +26,9 @@ export const StaticMapBlockComponent: React.FC<StaticMapBlock> = (props) => {
   return (
     <div className={`container mx-auto ${width} ${height}  min-h-[300px] relative`}>
       {title && (
-        <h2 className="text-primary text-center text-xl font-semibold md:text-2xl">{title}</h2>
+        <h2 className="text-primary pb-4 text-center text-xl font-semibold md:text-2xl">{title}</h2>
       )}
-      <div className={`w-full h-full pt-4 shadow-2xl rounded-xl overflow-clip`}>
+      <div className={`w-full h-full  shadow-2xl rounded-xl overflow-clip`}>
         <Map
           mapboxAccessToken={token}
           initialViewState={{ latitude, longitude, zoom }}
