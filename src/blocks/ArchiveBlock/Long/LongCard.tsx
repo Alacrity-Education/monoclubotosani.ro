@@ -15,7 +15,6 @@ export const LongCard: React.FC<{
   className?: string;
   doc?: CardPostData;
   relationTo?: "posts";
-  subtitle?: string;
   showCategories?: boolean;
   title?: string;
   variant?: "primary" | "secondary" | "starry" | "transparent";
@@ -26,12 +25,11 @@ export const LongCard: React.FC<{
     doc,
     relationTo,
     title: titleFromProps,
-    subtitle,
     variant = "primary",
   } = props;
 
   // @ts-ignore
-  const { slug, meta, title, eventDate } = doc || {};
+  const { slug, meta, title, eventDate, subtitle } = doc ;
   const { description, image: metaImage } = meta || {};
 
   const titleToUse = titleFromProps || title;
@@ -82,7 +80,7 @@ export const LongCard: React.FC<{
                 {titleToUse}
                 </h3>
                 {subtitle && (
-                  <div className="w-full text-start text-base sm:text-xl no-underline">
+                  <div className="w-full text-start text-base sm:text-xl mb-2 sm:mb-0 no-underline">
                     <h3>{subtitle}</h3>
                   </div>
                 )}

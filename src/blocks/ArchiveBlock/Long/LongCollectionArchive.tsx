@@ -30,7 +30,6 @@ export const LongCollectionArchive: React.FC<Props> = ({ posts, styles }) => {
                 className="h-full w-full"
                 doc={result}
                 relationTo="posts"
-                subtitle={result.subtitle || ""}
                 showCategories
                 title={undefined}
               />
