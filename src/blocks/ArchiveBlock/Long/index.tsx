@@ -45,6 +45,7 @@ export const LongArchiveBlock: React.FC<
     const fetchedPosts = await payload.find({
       collection: "posts",
       depth: 1,
+      sort:"-eventDate",
       limit,
       ...(flattenedCategories && flattenedCategories.length > 0
         ? {
