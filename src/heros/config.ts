@@ -16,7 +16,7 @@ export const hero: Field = {
     {
       name: 'type',
       type: 'select',
-      defaultValue: 'lowImpact',
+      defaultValue: 'homeHero',
       label: 'Type',
       options: [
         {
@@ -24,20 +24,12 @@ export const hero: Field = {
           value: 'none',
         },
         {
-          label: 'High Impact',
-          value: 'highImpact',
-        },
-        {
           label: 'Home Hero',
           value: 'homeHero',
         },
         {
-          label: 'Medium Impact',
-          value: 'mediumImpact',
-        },
-        {
-          label: 'Low Impact',
-          value: 'lowImpact',
+          label: 'Sliding Hero',
+          value: 'slidingHero',
         },
       ],
       required: true,
@@ -56,7 +48,7 @@ export const hero: Field = {
         },
       }),
       admin: {
-        condition: (_, { type } = {}) => !['homeHero'].includes(type),
+        condition: (_, { type } = {}) => !['homeHero', "slidingHero"].includes(type),
       },
       label: false,
     },
@@ -74,19 +66,41 @@ export const hero: Field = {
         condition: (_, { type } = {}) => ['homeHero'].includes(type),
       },
     },
-    linkGroup({
-      overrides: {
-        maxRows: 2,
-        admin: {
-          condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-        },
+    {
+      name:"slides",
+      label:"Slides",
+      interfaceName: "Slides",
+      type:"array",
+      minRows: 1,
+      maxRows: 10,
+      required:true,
+      admin: {
+        condition: (_, { type } = {}) => ['slidingHero'].includes(type),
       },
-    }),
+      fields:[
+    {
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+        {
+          name: 'title',
+          type: 'text',
+
+        },
+        {
+          name: 'subtitle',
+          type: 'text',
+
+        },
+      ]
+    },
     {
       name: 'media',
       type: 'upload',
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact', 'homeHero'].includes(type),
+        condition: (_, { type } = {}) => ['homeHero'].includes(type),
       },
       relationTo: 'media',
       required: false,
