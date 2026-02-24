@@ -67,6 +67,18 @@ export const hero: Field = {
       },
     },
     {
+      name: "timeout",
+      type: 'number',
+      label: "Time per slide",
+      min: 4000,
+      max: 16000,
+      defaultValue: 6000,
+
+      admin: {
+        condition: (_, { type } = {}) => ['slidingHero'].includes(type),
+      },
+    },
+    {
       name:"slides",
       label:"Slides",
       interfaceName: "Slides",

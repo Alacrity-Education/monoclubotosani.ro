@@ -187,6 +187,7 @@ export interface Page {
     } | null;
     title?: string | null;
     subtitle?: string | null;
+    timeout?: number | null;
     slides?: Slides;
     media?: (number | null) | Media;
   };
@@ -1264,6 +1265,7 @@ export interface PagesSelect<T extends boolean = true> {
         richText?: T;
         title?: T;
         subtitle?: T;
+        timeout?: T;
         slides?: T | SlidesSelect<T>;
         media?: T;
       };

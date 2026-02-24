@@ -5,7 +5,7 @@ import {Media as MediaType} from "@/payload-types"
 import type { Page } from "@/payload-types";
 import { Media } from "@/components/Media";
 
-export const SlidingHero: React.FC<Page["hero"]> = ({ slides }) => {
+export const SlidingHero: React.FC<Page["hero"]> = ({ slides, timeout }) => {
   const [visibleSlide, setVisibleSlide] = useState<number>(0);
   const sliderLength = slides?.length || 0;
 
@@ -16,7 +16,7 @@ export const SlidingHero: React.FC<Page["hero"]> = ({ slides }) => {
       setVisibleSlide((prev) => {
         return (prev + 1) % sliderLength;
       });
-    }, 4000);
+    }, timeout);
 
 
     return () => clearInterval(intervalId);
