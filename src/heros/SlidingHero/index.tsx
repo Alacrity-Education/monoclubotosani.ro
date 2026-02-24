@@ -16,7 +16,7 @@ export const SlidingHero: React.FC<Page["hero"]> = ({ slides, timeout }) => {
       setVisibleSlide((prev) => {
         return (prev + 1) % sliderLength;
       });
-    }, timeout);
+    }, timeout || 4000);
 
 
     return () => clearInterval(intervalId);
