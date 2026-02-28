@@ -1,6 +1,6 @@
 "use client";
 import { useHeaderTheme } from "@/providers/HeaderTheme";
-import React, {useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 import {Media as MediaType} from "@/payload-types"
 import type { Page } from "@/payload-types";
 import { Media } from "@/components/Media";
@@ -17,7 +17,6 @@ export const SlidingHero: React.FC<Page["hero"]> = ({ slides, timeout }) => {
         return (prev + 1) % sliderLength;
       });
     }, timeout || 4000);
-
 
     return () => clearInterval(intervalId);
   }, [sliderLength]);
@@ -65,7 +64,9 @@ export const SlidingHero: React.FC<Page["hero"]> = ({ slides, timeout }) => {
               zIndex: isCurrent ? "10" : "0",
             }}
           >
+            <Suspense fallback={<div className={"loading-spinner"}> </div>}>
             <Slide {...slide} />
+            </Suspense>
           </div>
         );
       })}
@@ -104,7 +105,6 @@ const Slide = ({media, title, subtitle}:{media?: MediaType | null | number, titl
         {media && (
           <Media
             fill
-            priority
             resource={media}
             pictureClassName="absolute h-screen w-[160vh] left-1/2 -ml-[80vh] sm:h-full sm:w-full sm:left-0 sm:ml-0"
             imgClassName="object-cover z-0 animate-ken-burns sm:animate-none"
