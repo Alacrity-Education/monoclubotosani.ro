@@ -18,8 +18,10 @@ export const SlidingHero: React.FC<Page["hero"]> = ({ slides, timeout }) => {
       });
     }, timeout || 4000);
 
+    // React will run this cleanup function (clearing the interval)
+    // every time visibleSlide changes, effectively resetting the timer!
     return () => clearInterval(intervalId);
-  }, [sliderLength]);
+  }, [sliderLength, timeout, visibleSlide]);
 
   if (!sliderLength) {
     return null;
