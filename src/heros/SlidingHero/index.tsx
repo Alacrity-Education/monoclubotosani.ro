@@ -33,6 +33,35 @@ export const SlidingHero: React.FC<Page["hero"]> = ({ slides, timeout }) => {
 
   return (
     <div className="relative -mt-28 h-screen w-full overflow-hidden text-white sm:-mt-40">
+      <div className={"absolute right-10 bottom-12 sm:bottom-18 lg:bottom-16 sm:right-16 z-50 flex flex-row gap-4 sm:gap-3"}>
+        {slides?.map((slide, index) => {
+          const isCurrent = index === visibleSlide;
+          const slideTimeout = timeout || 4000;
+
+          return (
+            <div
+              key={"index_slide" + index}
+              onClick={() => setVisibleSlide(index)}
+              // The container acts as the track
+              className="relative h-4 sm:h-3 cursor-pointer overflow-hidden rounded-lg bg-white/40 shadow-lg transition-all duration-300"
+              style={{
+                width: isCurrent ? "6rem " : "1.5rem",
+              }}
+            >
+              {/* The inner div acts as the animated fill */}
+              <div
+                className="h-full bg-white ease-linear "
+                style={{
+                  width: isCurrent ? "100%" : "0%",
+                  transitionProperty: "width",
+                  // Animate over the timeout duration if active, snap to 0 immediately if inactive
+                  transitionDuration: isCurrent ? `${slideTimeout}ms` : "0ms",
+                }}
+              />
+            </div>
+          );
+        })}
+      </div>
       {slides?.map((slide, index) => {
 
         // 2. Determine the state of this specific slide
@@ -81,7 +110,7 @@ const Slide = ({media, title, subtitle}:{media?: MediaType | null | number, titl
       className={"relative flex h-screen items-center justify-center overflow-hidden text-white"}
       data-theme="dark"
     >
-      <div className="font-base relative z-20 container mb-8 flex h-full items-end justify-start">
+      <div className="font-base relative z-20 container mb-28 sm:mb-8 flex h-full items-end justify-start">
         <div className="pb-8 md:text-start">
           {title && (
             <h1 className="mb-6 max-w-full text-5xl font-semibold sm:max-w-2/3 md:max-w-lg md:text-7xl xl:text-8xl">
@@ -99,7 +128,7 @@ const Slide = ({media, title, subtitle}:{media?: MediaType | null | number, titl
       <div className="absolute inset-0 z-0 select-none">
         {/* Dark Overlay */}
         {/* Changed to absolute inset-0 to ensure it actually covers the image */}
-        <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-transparent via-70% to-transparent opacity-70"></div>
+        <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-transparent via-70% to-transparent opacity-90"></div>
 
         {/* Media Component */}
         {media && (
