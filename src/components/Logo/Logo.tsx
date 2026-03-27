@@ -21,7 +21,7 @@ export const Logo = (props: Props) => {
     /* eslint-disable @next/next/no-img-element */
       <div 
         className={clsx(
-          "text-lg lg:text-xl font-semibold",
+          "text-lg lg:text-xl font-semibold text-black",
           className,
         )}
        
