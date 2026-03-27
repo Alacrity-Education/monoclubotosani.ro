@@ -19,28 +19,13 @@ export const Logo = (props: Props) => {
 
   return (
     /* eslint-disable @next/next/no-img-element */
-    <>
-      <img
-        alt="Payload Logo"
-        loading={loading}
-        fetchPriority={priority}
-        decoding="async"
+      <div 
         className={clsx(
-          "hidden h-10 p-1 sm:inline-block sm:h-20 sm:p-2",
+          "text-lg lg:text-xl font-semibold",
           className,
         )}
-        src="/logo.svg"
-      />
-      <img
-        alt="Payload Logo"
-        width={50}
-        height={50}
-        loading={loading}
-        fetchPriority={priority}
-        decoding="async"
-        className={clsx("block h-10 p-1 sm:hidden", className)}
-        src="/logo-sm.svg"
-      />
-    </>
+       
+      > Monoclu Botosani </div>
+     
   );
 };
